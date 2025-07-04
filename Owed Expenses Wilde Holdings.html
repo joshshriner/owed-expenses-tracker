@@ -1,0 +1,600 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Owed Expenses Tracker&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Tailwind CSS CDN --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: "Inter", sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f0f4f8;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: flex-start;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 900px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.input-group label {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #334155;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.input-group input {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #cbd5e1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: border-color 0.2s;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.input-group input:focus {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: #6366f1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.2s, transform 0.1s;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-primary {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #6366f1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-primary:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #4f46e5;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-1px);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-primary:active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(0);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-success {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #22c55e;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.875rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px 12px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-success:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #16a34a;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-edit {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #3b82f6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.875rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-left: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-edit:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #2563eb;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.table-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: auto;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>table {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-collapse: collapse;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>th, td {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: left;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #e2e8f0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>th {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f8fafc;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #475569;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.875rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tr:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f1f5f9;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.total-owed {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.25rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #16a34a;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: right;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-top: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-top: 1px solid #e2e8f0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.loading-indicator {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #64748b;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.message-box, .edit-modal {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translate(-50%, -50%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none; /* Hidden by default */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 350px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.message-box p, .edit-modal h2 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #334155;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.message-box button, .edit-modal .modal-buttons button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #6366f1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.2s;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.message-box button:hover, .edit-modal .modal-buttons button:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #4f46e5;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.status-pending {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #ef4444; /* Red for pending */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.status-paid {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #16a34a; /* Green for paid */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Modal specific styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-overlay {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: rgba(0, 0, 0, 0.5);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 999;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.edit-modal {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 500px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 90%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.edit-modal .input-group {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: left;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.edit-modal .modal-buttons {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: flex-end;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.edit-modal .modal-buttons .btn-cancel {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #6b7280;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.edit-modal .modal-buttons .btn-cancel:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #4b5563;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 class="text-3xl font-bold text-gray-800 text-center mb-6"&gt;Owed Expenses Tracker&lt;/h1&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="text-sm text-gray-600 mb-4 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>User ID: &lt;span id="userIdDisplay" class="font-mono text-gray-700"&gt;Loading...&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;form id="expenseForm" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="input-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="description"&gt;Expense Description&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="description" placeholder="e.g., Dinner with John" required class="rounded-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="input-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="propertyAddress"&gt;Property Address&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="propertyAddress" placeholder="e.g., 123 Main St" class="rounded-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="input-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="amount"&gt;Amount Owed ($)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="number" id="amount" placeholder="e.g., 25.50" step="0.01" min="0" required class="rounded-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="submit" class="btn btn-primary rounded-md"&gt;Add Expense&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/form&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="table-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-2xl font-bold text-gray-800 mb-4"&gt;Your Owed Expenses&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="loadingIndicator" class="loading-indicator"&gt;Loading expenses...&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;table id="expensesTable" class="hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;th&gt;Description&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;th&gt;Property Address&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;th&gt;Amount&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;th&gt;Date Added&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;th&gt;Status&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;th&gt;Action&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;tbody id="expensesTableBody"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Expenses will be loaded here --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="noExpensesMessage" class="text-center text-gray-500 mt-4 hidden"&gt;No expenses to display yet. Add one above!&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="totalOwed" class="total-owed"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Total Owed (Pending): $0.00</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Message Box for alerts --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="messageBox" class="message-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p id="messageText"&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="messageBoxOkBtn"&gt;OK&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Edit Expense Modal --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="editModalOverlay" class="modal-overlay"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="editModal" class="edit-modal"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-2xl font-bold text-gray-800 mb-4"&gt;Edit Expense&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="hidden" id="editExpenseId"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="input-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="editDescription"&gt;Expense Description&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="editDescription" class="rounded-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="input-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="editPropertyAddress"&gt;Property Address&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="editPropertyAddress" class="rounded-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="input-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="editAmount"&gt;Amount Owed ($)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="number" id="editAmount" step="0.01" min="0" class="rounded-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-buttons"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="cancelEditBtn" class="btn btn-cancel rounded-md"&gt;Cancel&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="saveEditBtn" class="btn btn-primary rounded-md"&gt;Save Changes&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script type="module"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Firebase SDK imports</p>
+<p class="p1"><span class="Apple-converted-space">        </span>import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>import { getFirestore, collection, addDoc, onSnapshot, updateDoc, doc, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// DOM elements</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const expenseForm = document.getElementById('expenseForm');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const descriptionInput = document.getElementById('description');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const propertyAddressInput = document.getElementById('propertyAddress');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const amountInput = document.getElementById('amount');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const expensesTableBody = document.getElementById('expensesTableBody');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const totalOwedDisplay = document.getElementById('totalOwed');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const loadingIndicator = document.getElementById('loadingIndicator');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const expensesTable = document.getElementById('expensesTable');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const noExpensesMessage = document.getElementById('noExpensesMessage');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const userIdDisplay = document.getElementById('userIdDisplay');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const messageBox = document.getElementById('messageBox');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const messageText = document.getElementById('messageText');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const messageBoxOkBtn = document.getElementById('messageBoxOkBtn');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Edit Modal DOM elements</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const editModalOverlay = document.getElementById('editModalOverlay');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const editExpenseIdInput = document.getElementById('editExpenseId');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const editDescriptionInput = document.getElementById('editDescription');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const editPropertyAddressInput = document.getElementById('editPropertyAddress');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const editAmountInput = document.getElementById('editAmount');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const saveEditBtn = document.getElementById('saveEditBtn');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const cancelEditBtn = document.getElementById('cancelEditBtn');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>let db;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let auth;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentUserId = null;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let isAuthReady = false; // Flag to ensure auth is ready before Firestore operations</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentExpenses = []; // Store expenses for easy access during editing</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Show custom message box</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showMessageBox(message) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>messageText.textContent = message;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>messageBox.style.display = 'flex';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Hide custom message box</p>
+<p class="p1"><span class="Apple-converted-space">        </span>messageBoxOkBtn.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>messageBox.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Show edit modal</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showEditModal() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>editModalOverlay.style.display = 'flex';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Hide edit modal</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function hideEditModal() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>editModalOverlay.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Initialize Firebase</p>
+<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const appId = expenses-96372;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// For Firebase JS SDK v7.20.0 and later, measurementId is optional</p>
+<p class="p2"><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span>const firebaseConfig = {</p>
+<p class="p1"><span class="Apple-converted-space">  <span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>apiKey: "AIzaSyCSGurEkKVf3zyITVVejQiNvPX6DBQD0sU",</p>
+<p class="p1"><span class="Apple-converted-space">  <span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>authDomain: "expenses-96372.firebaseapp.com",</p>
+<p class="p1"><span class="Apple-converted-space">  <span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>projectId: "expenses-96372",</p>
+<p class="p1"><span class="Apple-converted-space">  <span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>storageBucket: "expenses-96372.firebasestorage.app",</p>
+<p class="p1"><span class="Apple-converted-space">  <span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>messagingSenderId: "815816657733",</p>
+<p class="p1"><span class="Apple-converted-space">  <span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>appId: "1:815816657733:web:5aae3f3f4a748fb6034c2c",</p>
+<p class="p1"><span class="Apple-converted-space">  <span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>measurementId: "G-650F33V922"</p>
+<p class="p1"><span class="Apple-tab-span">	</span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (Object.keys(firebaseConfig).length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessageBox("Firebase configuration is missing. The app may not function correctly without it.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("Firebase configuration is missing.");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const app = initializeApp(firebaseConfig);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>db = getFirestore(app);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>auth = getAuth(app);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Authenticate user</p>
+<p class="p1"><span class="Apple-converted-space">                </span>onAuthStateChanged(auth, async (user) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (user) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>currentUserId = user.uid;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>userIdDisplay.textContent = currentUserId;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>isAuthReady = true;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>console.log("User signed in:", currentUserId);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Once authenticated, start listening for expenses</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>listenForExpenses();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Sign in anonymously if no user is present or initial token is not provided</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>if (typeof __initial_auth_token !== 'undefined' &amp;&amp; __initial_auth_token) {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>await signInWithCustomToken(auth, __initial_auth_token);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>await signInAnonymously(auth);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>console.error("Error signing in:", error);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>showMessageBox("Error signing in. Please try again later.");</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>userIdDisplay.textContent = "Authentication failed.";</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>console.error("Failed to initialize Firebase:", error);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>showMessageBox("Failed to initialize the application. Please check the console for details.");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Function to listen for real-time updates to expenses</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function listenForExpenses() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!isAuthReady || !currentUserId) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.log("Authentication not ready or user ID not available. Cannot listen for expenses.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const expensesCollectionRef = collection(db, `artifacts/${__app_id}/users/${currentUserId}/expenses`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const q = query(expensesCollectionRef);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>onSnapshot(q, (snapshot) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let totalPending = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>expensesTableBody.innerHTML = ''; // Clear existing table rows</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentExpenses = []; // Clear and repopulate currentExpenses</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>snapshot.forEach((doc) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const expense = doc.data();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentExpenses.push({ id: doc.id, ...expense });</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Sort expenses by timestamp in descending order (newest first)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentExpenses.sort((a, b) =&gt; b.timestamp - a.timestamp);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (currentExpenses.length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>expensesTable.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>noExpensesMessage.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>expensesTable.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>noExpensesMessage.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentExpenses.forEach((expense) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Only sum if status is 'Pending'</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (expense.status === 'Pending') {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>totalPending += expense.amount;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const row = expensesTableBody.insertRow();</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const statusClass = expense.status === 'Pending' ? 'status-pending' : 'status-paid';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const actionButtons = expense.status === 'Pending'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>? `&lt;button class="btn btn-success mark-paid-btn rounded-md" data-id="${expense.id}"&gt;Mark Paid&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                               </span>&lt;button class="btn btn-edit edit-expense-btn rounded-md" data-id="${expense.id}"&gt;Edit&lt;/button&gt;`</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>: `&lt;span class="${statusClass}"&gt;Paid&lt;/span&gt;`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>row.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;${expense.description}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;${expense.propertyAddress || 'N/A'}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;$${expense.amount.toFixed(2)}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;${new Date(expense.timestamp).toLocaleDateString()}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td class="${statusClass}"&gt;${expense.status}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;${actionButtons}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>totalOwedDisplay.textContent = `Total Owed (Pending): $${totalPending.toFixed(2)}`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>loadingIndicator.classList.add('hidden'); // Hide loading after data is displayed</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, (error) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("Error fetching expenses:", error);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessageBox("Error loading expenses. Please try refreshing the page.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>loadingIndicator.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Add Expense</p>
+<p class="p1"><span class="Apple-converted-space">        </span>expenseForm.addEventListener('submit', async (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>e.preventDefault();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!isAuthReady || !currentUserId) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessageBox("Please wait, application is still authenticating...");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const description = descriptionInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const propertyAddress = propertyAddressInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const amount = parseFloat(amountInput.value);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!description || isNaN(amount) || amount &lt;= 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessageBox("Please enter a valid description and a positive amount.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Add a new document to the 'expenses' collection</p>
+<p class="p1"><span class="Apple-converted-space">                </span>await addDoc(collection(db, `artifacts/${__app_id}/users/${currentUserId}/expenses`), {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: description,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>propertyAddress: propertyAddress,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>amount: amount,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>timestamp: Date.now(), // Store timestamp for sorting</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>status: 'Pending', // Initial status</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>userId: currentUserId</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>descriptionInput.value = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>propertyAddressInput.value = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>amountInput.value = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>descriptionInput.focus();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("Error adding document: ", e);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessageBox("Failed to add expense. Please try again.");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Event listener for table body to handle both "Mark Paid" and "Edit" buttons</p>
+<p class="p1"><span class="Apple-converted-space">        </span>expensesTableBody.addEventListener('click', async (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Mark Expense as Paid (Update Status)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (e.target.classList.contains('mark-paid-btn')) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const expenseId = e.target.dataset.id;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!expenseId) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showMessageBox("Could not find expense ID to update.");</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!isAuthReady || !currentUserId) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showMessageBox("Please wait, application is still authenticating...");</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>await updateDoc(doc(db, `artifacts/${__app_id}/users/${currentUserId}/expenses`, expenseId), {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>status: 'Paid'</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.error("Error updating document: ", e);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showMessageBox("Failed to mark expense as paid. Please try again.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Edit Expense</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (e.target.classList.contains('edit-expense-btn')) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const expenseId = e.target.dataset.id;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const expenseToEdit = currentExpenses.find(exp =&gt; exp.id === expenseId);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (expenseToEdit) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>editExpenseIdInput.value = expenseToEdit.id;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>editDescriptionInput.value = expenseToEdit.description;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>editPropertyAddressInput.value = expenseToEdit.propertyAddress || '';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>editAmountInput.value = expenseToEdit.amount;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showEditModal();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showMessageBox("Expense not found for editing.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Save Changes in Edit Modal</p>
+<p class="p1"><span class="Apple-converted-space">        </span>saveEditBtn.addEventListener('click', async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const expenseId = editExpenseIdInput.value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const updatedDescription = editDescriptionInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const updatedPropertyAddress = editPropertyAddressInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const updatedAmount = parseFloat(editAmountInput.value);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!updatedDescription || isNaN(updatedAmount) || updatedAmount &lt;= 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessageBox("Please enter a valid description and a positive amount for the edited expense.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!isAuthReady || !currentUserId) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessageBox("Please wait, application is still authenticating...");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>await updateDoc(doc(db, `artifacts/${__app_id}/users/${currentUserId}/expenses`, expenseId), {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: updatedDescription,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>propertyAddress: updatedPropertyAddress,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>amount: updatedAmount</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>hideEditModal();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("Error updating expense:", e);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showMessageBox("Failed to save changes. Please try again.");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Cancel Edit Modal</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cancelEditBtn.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>hideEditModal();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Initial call to hide loading and show message if no expenses (before snapshot loads)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>loadingIndicator.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>expensesTable.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>noExpensesMessage.classList.add('hidden');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
